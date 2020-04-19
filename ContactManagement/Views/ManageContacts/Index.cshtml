@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ContactManagement.Models.ContactsModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>First Name</label>
+        </th>
+        <th>
+            <label>Last Name</label>
+        </th>
+        <th>
+            <label>Email</label>
+        </th>
+        <th>
+            <label>Phone Number</label>
+        </th>
+        <th>
+            <label>Status</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @{
+                    var status = (item.Status) ? "Active" : "Inactive";
+                    <label>@status</label>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+                    }
+
+</table>
